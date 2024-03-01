@@ -9,14 +9,14 @@ public class Aula03Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Aula03Application.class, args);
-		//Instanciar um investimento
-		Investimento investimento = new Investimento();
-
-		//Setar o valor do investimento
-		investimento.setValor(1000.0);
-
-		//Exibir o valor do investimento
-		System.out.println(investimento.getValor());
+//		//Instanciar um investimento
+//		Investimento investimento = new Investimento();
+//
+//		//Setar o valor do investimento
+//		investimento.setValor(1000.0);
+//
+//		//Exibir o valor do investimento
+//		System.out.println(investimento.getValor());
 
 	}
 
