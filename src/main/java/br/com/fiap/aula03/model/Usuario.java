@@ -1,28 +1,31 @@
 package br.com.fiap.aula03.model;
 
-import br.com.fiap.aula03.dto.CadastroInvestimentosDto;
+import br.com.fiap.aula03.dto.CadastroUsuarioDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Entity
-@Table(name = "investimentos")
+@Table(name = "usuarios")
 @Getter @Setter
 @AllArgsConstructor @NoArgsConstructor
-public class Investimento {
+public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String email;
     private String nome;
-    @Enumerated
-    private CategoriaInvestimento categoria;
-    private Double valor;
+    private String telefone;
+    private LocalDate dataCadastro;
 
-    public Investimento(CadastroInvestimentosDto dto) {
+    public Usuario(CadastroUsuarioDto dto) {
+        this.email = dto.email();
         this.nome = dto.nome();
-        this.categoria = dto.categoria();
-        this.valor = dto.valor();
+        this.telefone = dto.telefone();
+        this.dataCadastro = dto.dataCadastro();
     }
 }

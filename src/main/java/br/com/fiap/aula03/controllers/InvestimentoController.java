@@ -1,6 +1,7 @@
 package br.com.fiap.aula03.controllers;
 
 import br.com.fiap.aula03.dto.CadastroInvestimentosDto;
+import br.com.fiap.aula03.dto.DetalhesInvestimentoDto;
 import br.com.fiap.aula03.model.CategoriaInvestimento;
 import br.com.fiap.aula03.model.Investimento;
 import br.com.fiap.aula03.repositories.InvestimentoRepository;
@@ -27,11 +28,11 @@ public class InvestimentoController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<CadastroInvestimentosDto> post(@RequestBody CadastroInvestimentosDto investimentoDto, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<DetalhesInvestimentoDto> post(@RequestBody CadastroInvestimentosDto investimentoDto, UriComponentsBuilder uriBuilder) {
         Investimento investimento = new Investimento(investimentoDto);
         repository.save(investimento);
-        var uri = uriBuilder.path("/investimento/{id}").buildAndExpand(investimento.getId()).toUri();
-        return ResponseEntity.created(uri).body(investimentoDto);
+        var uri = uriBuilder.path("/investimentos/{id}").buildAndExpand(investimento.getId()).toUri();
+        return ResponseEntity.created(uri).body(new DetalhesInvestimentoDto(investimento));
     }
 
 }
