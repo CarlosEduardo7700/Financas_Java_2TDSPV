@@ -2,6 +2,7 @@ package br.com.fiap.aula03.controllers;
 
 import br.com.fiap.aula03.dto.CadastroInvestimentosDto;
 import br.com.fiap.aula03.dto.DetalhesInvestimentoDto;
+import br.com.fiap.aula03.dto.ListagemInvestimentoDto;
 import br.com.fiap.aula03.model.CategoriaInvestimento;
 import br.com.fiap.aula03.model.Investimento;
 import br.com.fiap.aula03.repositories.InvestimentoRepository;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("investimentos")
@@ -21,9 +23,10 @@ public class InvestimentoController {
     private InvestimentoRepository repository;
 
     @GetMapping
-    public Investimento get(){
+    public ResponseEntity<List<ListagemInvestimentoDto>> get(){
         List<Investimento> investimentos = repository.findAll();
-        return new Investimento(1l, "CDI", CategoriaInvestimento.RENDA_FIXA, 1000.0);
+        List<ListagemInvestimentoDto> listaDeInvestimentos = investimentos.stream().map(ListagemInvestimentoDto::new).collect(Collectors.toList());
+        return ResponseEntity.ok(listaDeInvestimentos);
     }
 
     @PostMapping
