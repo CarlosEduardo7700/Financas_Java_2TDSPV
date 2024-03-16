@@ -1,5 +1,6 @@
 package br.com.fiap.aula03.model;
 
+import br.com.fiap.aula03.dto.AlterarInvestimentoDto;
 import br.com.fiap.aula03.dto.CadastroInvestimentosDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,5 +25,12 @@ public class Investimento {
         this.nome = dto.nome();
         this.categoria = dto.categoria();
         this.valor = dto.valor();
+    }
+
+    public void alterarInformacoes(AlterarInvestimentoDto dto) {
+        if (dto.nome() != null)
+            this.nome = dto.nome();
+        if (dto.categoria() != null)
+            this.categoria = dto.categoria();
     }
 }
