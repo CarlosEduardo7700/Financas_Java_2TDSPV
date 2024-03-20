@@ -1,5 +1,6 @@
 package br.com.fiap.aula03.controllers;
 
+import br.com.fiap.aula03.dto.AlterarUsuarioDto;
 import br.com.fiap.aula03.dto.CadastroUsuarioDto;
 import br.com.fiap.aula03.dto.DetalhesUsuarioDto;
 import br.com.fiap.aula03.dto.ListagemUsuarioDto;
@@ -43,5 +44,13 @@ public class UsuarioController {
         repository.save(usuario);
         var uri = uriBuilder.path("/usuarios/{id}").buildAndExpand(usuario.getId()).toUri();
         return ResponseEntity.created(uri).body(new DetalhesUsuarioDto(usuario));
+    }
+
+    @PutMapping("{id}")
+    @Transactional
+    public ResponseEntity<DetalhesUsuarioDto> put(@PathVariable("id") Long id, @RequestBody AlterarUsuarioDto dto){
+        Usuario usuario = repository.getReferenceById(id);
+        usuario.alterarDados(dto);
+        return ResponseEntity.ok(new DetalhesUsuarioDto(usuario));
     }
 }

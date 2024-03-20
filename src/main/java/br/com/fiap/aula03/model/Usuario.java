@@ -1,5 +1,6 @@
 package br.com.fiap.aula03.model;
 
+import br.com.fiap.aula03.dto.AlterarUsuarioDto;
 import br.com.fiap.aula03.dto.CadastroUsuarioDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -27,5 +28,14 @@ public class Usuario {
         this.nome = dto.nome();
         this.telefone = dto.telefone();
         this.dataCadastro = dto.dataCadastro();
+    }
+
+    public void alterarDados(AlterarUsuarioDto dto) {
+        if (dto.email() != null)
+            this.email = dto.email();
+        if (dto.nome() != null)
+            this.nome = dto.nome();
+        if (dto.telefone() != null)
+            this.telefone = dto.telefone();
     }
 }
