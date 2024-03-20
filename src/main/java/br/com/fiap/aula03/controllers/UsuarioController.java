@@ -7,11 +7,10 @@ import br.com.fiap.aula03.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("usuarios")
@@ -19,6 +18,12 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioRepository repository;
+
+    @GetMapping("{id}")
+    public ResponseEntity<DetalhesUsuarioDto> getById(@PathVariable("id") Long id) {
+        Usuario usuario = repository.getReferenceById(id);
+        return ResponseEntity.ok(new DetalhesUsuarioDto(usuario));
+    }
 
     @PostMapping
     @Transactional

@@ -32,7 +32,7 @@ public class InvestimentoController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<DetalhesInvestimentoDto> pesquisar(@PathVariable("id") Long id) {
+    public ResponseEntity<DetalhesInvestimentoDto> getById(@PathVariable("id") Long id) {
         var investimento = repository.getReferenceById(id);
         return ResponseEntity.ok(new DetalhesInvestimentoDto(investimento));
     }
