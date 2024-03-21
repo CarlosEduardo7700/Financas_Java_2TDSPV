@@ -1,9 +1,9 @@
 package br.com.fiap.aula03.controllers;
 
-import br.com.fiap.aula03.dto.AlterarUsuarioDto;
-import br.com.fiap.aula03.dto.CadastroUsuarioDto;
-import br.com.fiap.aula03.dto.DetalhesUsuarioDto;
-import br.com.fiap.aula03.dto.ListagemUsuarioDto;
+import br.com.fiap.aula03.dto.usuario.AlterarUsuarioDto;
+import br.com.fiap.aula03.dto.usuario.CadastroUsuarioDto;
+import br.com.fiap.aula03.dto.usuario.DetalhesUsuarioDto;
+import br.com.fiap.aula03.dto.usuario.ListagemUsuarioDto;
 import br.com.fiap.aula03.model.Usuario;
 import br.com.fiap.aula03.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -52,5 +51,12 @@ public class UsuarioController {
         Usuario usuario = repository.getReferenceById(id);
         usuario.alterarDados(dto);
         return ResponseEntity.ok(new DetalhesUsuarioDto(usuario));
+    }
+
+    @DeleteMapping("{id}")
+    @Transactional
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+        repository.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 }

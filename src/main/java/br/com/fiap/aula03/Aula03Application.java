@@ -16,7 +16,7 @@ public class Aula03Application {
 //		investimento.setValor(1000.0);
 //
 //		//Exibir o valor do investimento
-//		System.out.println(investimento.getValor());
+//		System.out.println(investimento.getValor());z
 
 	}
 

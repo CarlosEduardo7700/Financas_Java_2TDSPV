@@ -1,7 +1,7 @@
 package br.com.fiap.aula03.model;
 
-import br.com.fiap.aula03.dto.AlterarUsuarioDto;
-import br.com.fiap.aula03.dto.CadastroUsuarioDto;
+import br.com.fiap.aula03.dto.usuario.AlterarUsuarioDto;
+import br.com.fiap.aula03.dto.usuario.CadastroUsuarioDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

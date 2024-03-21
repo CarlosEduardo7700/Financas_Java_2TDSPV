@@ -1,10 +1,9 @@
 package br.com.fiap.aula03.controllers;
 
-import br.com.fiap.aula03.dto.AlterarInvestimentoDto;
-import br.com.fiap.aula03.dto.CadastroInvestimentosDto;
-import br.com.fiap.aula03.dto.DetalhesInvestimentoDto;
-import br.com.fiap.aula03.dto.ListagemInvestimentoDto;
-import br.com.fiap.aula03.model.CategoriaInvestimento;
+import br.com.fiap.aula03.dto.investimento.AlterarInvestimentoDto;
+import br.com.fiap.aula03.dto.investimento.CadastroInvestimentosDto;
+import br.com.fiap.aula03.dto.investimento.DetalhesInvestimentoDto;
+import br.com.fiap.aula03.dto.investimento.ListagemInvestimentoDto;
 import br.com.fiap.aula03.model.Investimento;
 import br.com.fiap.aula03.repositories.InvestimentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +51,13 @@ public class InvestimentoController {
         var investimento = repository.getReferenceById(id);
         investimento.alterarInformacoes(dto);
         return ResponseEntity.ok(new DetalhesInvestimentoDto(investimento));
+    }
+
+    @DeleteMapping("{id}")
+    @Transactional
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+        repository.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 
 }

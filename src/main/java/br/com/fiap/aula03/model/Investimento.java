@@ -1,7 +1,7 @@
 package br.com.fiap.aula03.model;
 
-import br.com.fiap.aula03.dto.AlterarInvestimentoDto;
-import br.com.fiap.aula03.dto.CadastroInvestimentosDto;
+import br.com.fiap.aula03.dto.investimento.AlterarInvestimentoDto;
+import br.com.fiap.aula03.dto.investimento.CadastroInvestimentosDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
